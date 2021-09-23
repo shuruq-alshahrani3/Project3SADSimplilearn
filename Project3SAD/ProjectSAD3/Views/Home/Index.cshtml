@@ -1,0 +1,44 @@
+﻿@model ViewModelIndex
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="conatiner">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <form method="post" asp-action="Search">
+                <div class="row  justify-content-center">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder=" Search by company name "  asp-for="Item"/>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="submit" class="btn btn-info" value="Search" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        @foreach (Computer item in Model.computer)
+        {
+            
+           var x = @item.ImgPath.Split("\\");
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                 
+                    
+                    <div class="text-center">
+                       
+                        <h3>@item.Company - @item.Models</h3>
+                        <h5>@item.Description</h5>
+                        <p>Price : @item.price</p>
+
+                        @Html.ActionLink("Buy", "GetItem", "Home", new { id = item.Id }, new { @class = "btn btn-info" })
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+

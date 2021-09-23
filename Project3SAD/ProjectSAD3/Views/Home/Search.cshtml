@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Computer>
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+@if (Model.Any()) { 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Models</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Buy</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach(Computer computer in Model)
+            {
+            <tr>
+                <td>@computer.Company</td>
+                <td>@computer.Models</td>
+                <td>@computer.Description</td>
+                <td>@computer.price</td>
+                <td>
+                    @Html.ActionLink("Buy", "GetItem", "Home", new { id = computer.Id }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+ 
+}
+            else
+            {
+               <div class="col-md-12 text-center">
+                   <h3>No Result </h3>
+               </div>
+            }
